@@ -100,6 +100,8 @@
         padding-top: 140px;
           
         background-position: -230px 80px;
+        background-size: cover;           /* rasm to‘liq chiqsin */
+    background-attachment: scroll;    /* mobil uchun muhim */
       }
 
      header {
@@ -130,12 +132,13 @@
       }
 
       .certificate {
-        background: rgba(255, 255, 255, 0.88);
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-
-        border-radius: 18px;
-        padding: 25px 18px;
+         background: rgba(255, 255, 255, 0.85); /* Oq, lekin shaffof */
+  backdrop-filter: blur(6px);            /* Orqa fonni yumshatadi */
+  -webkit-backdrop-filter: blur(6px);    /* Android / iOS uchun */
+  border-radius: 20px;
+  padding: 32px 28px;
+  max-width: 620px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
       }
 
       .certificate h1 {
