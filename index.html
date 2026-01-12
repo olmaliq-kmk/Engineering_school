@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 
-  <!-- MUHIM: MOBIL UCHUN -->
+  <!-- MOBIL UCHUN MUHIM -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>AGMK Muhandislik maktabi</title>
@@ -25,12 +25,7 @@
       align-items: center;
       padding-top: 120px;
     }
-       .certificate h1,
-  .certificate .name,
-  .certificate p {
-    color: #ffffff;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.5);
-  }
+
     /* ===== HEADER ===== */
     header {
       position: fixed;
@@ -57,9 +52,9 @@
       font-weight: bold;
     }
 
-    /* ===== SERTIFIKAT ===== */
+    /* ===== SERTIFIKAT (DESKTOP) ===== */
     .certificate {
-      background: #fff;
+      background: #ffffff;
       border-radius: 16px;
       padding: 30px 25px;
       text-align: center;
@@ -70,17 +65,20 @@
     .certificate h1 {
       font-size: 26px;
       margin-bottom: 8px;
+      color: #000;
     }
 
     .certificate p {
       font-size: 15px;
       margin: 8px 0;
+      color: #000;
     }
 
     .name {
       font-size: 30px;
       font-weight: bold;
       margin: 15px 0;
+      color: #000;
     }
 
     .btn {
@@ -101,32 +99,29 @@
 
     /* ===== MOBIL (ANDROID) ===== */
     @media (max-width: 768px) {
+
       body {
         padding-top: 140px;
-          
         background-position: -230px 80px;
-        background-size: cover;           /* rasm to‘liq chiqsin */
-    background-attachment: scroll;    /* mobil uchun muhim */
+        background-size: cover;
+        background-attachment: scroll;
       }
 
-     header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+      header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
 
-  padding: 5px 10px;
-
-  /* 🔴 MUHIM QISM */
-  background: rgba(15, 45, 58, 0.65);
-
-  z-index: 10;
-}
+        padding: 5px 10px;
+        background: rgba(15, 45, 58, 0.65);
+        z-index: 10;
+      }
 
       .logo {
         height: 90px;
@@ -136,14 +131,23 @@
         font-size: 13px;
       }
 
+      /* 🔴 MOBILDA SERTIFIKAT FONI HIRA */
       .certificate {
-         background: rgba(255, 255, 255, 0.20); /* 🔴 ko‘proq hira */
-  backdrop-filter: blur(4px);            /* 🔴 biroz kam blur */
-  -webkit-backdrop-filter: blur(4px);
-  border-radius: 20px;
-  padding: 32px 28px;
-  max-width: 620px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+        background: rgba(255, 255, 255, 0.20);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        border-radius: 20px;
+        padding: 32px 28px;
+        max-width: 620px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      }
+
+      /* 🔴 FAQAT MOBILDA MATNLAR OQ */
+      .certificate h1,
+      .certificate .name,
+      .certificate p {
+        color: #ffffff;
+        text-shadow: 0 2px 6px rgba(0,0,0,0.5);
       }
 
       .certificate h1 {
@@ -176,13 +180,11 @@
   <!-- SERTIFIKAT -->
   <div class="certificate">
     <h1>AVTOMATLASHTIRISH</h1>
-  
 
     <div class="name">Saparaliyev Sharifjon Dilshod o'g'li</div>
 
     <p>
-      muhandislik kursini muvaffaqiyatli yakunlagani
-      uchun
+      muhandislik kursini muvaffaqiyatli yakunlagani uchun
     </p>
 
     <a href="sharifjon.pdf" class="btn" download>
