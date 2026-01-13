@@ -212,15 +212,21 @@
       <h2>ID topilmadi</h2>
       <p>Iltimos, QR kod orqali kiring.</p>
     `;
-  } else if (validIDs[id]) {
-    cert.innerHTML = `
-      <h2 style="color:green;">✔ Haqiqiy sertifikat</h2>
-      <p><b>Ism:</b> ${validIDs[id].name}</p>
-      <p><b>Kurs:</b> ${validIDs[id].course}</p>
-      <p><b>Sana:</b> ${validIDs[id].date}</p>
-      <p><b>ID:</b> ${id}</p>
-    `;
-  } else {
+ } else if (validIDs[id]) {
+  cert.innerHTML = `
+    <h2 style="color:green;">✔ Haqiqiy sertifikat</h2>
+
+    <p><b>Ism:</b> ${validIDs[id].name}</p>
+    <p><b>Kurs:</b> ${validIDs[id].course}</p>
+    <p><b>Sana:</b> ${validIDs[id].date}</p>
+    <p><b>ID:</b> ${id}</p>
+
+    <a href="sharifjon.pdf" class="btn" download>
+      📄 Sertifikatni yuklab olish
+    </a>
+  `;
+}
+ else {
     cert.innerHTML = `
       <h2 style="color:red;">❌ Bunday sertifikat topilmadi</h2>
       <p>ID: <b>${id}</b></p>
