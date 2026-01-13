@@ -191,47 +191,36 @@
       📄 Sertifikatni yuklab olish
     </a>
   </div>
-<script>
-  // URL dan ID ni olamiz
+
+  <script>
+  const API_URL = "https://script.google.com/macros/s/AKfycbxkje_TUtAMTzQfgCDIrZ5sHPDVKYeF-bZvVqCbsl0RA8krL5teedcW_9v7_mHsB0Unbg/exec";
+
   const params = new URLSearchParams(window.location.search);
-  const id = params.get("id");
+  const certId = params.get("id");
 
-  // 👉 HAQIQIY ID LAR RO‘YXATI (hozircha 1 ta)
-  const validIDs = {
-    "AGMK-2026-0001": {
-      name: "Saparaliyev Sharifjon Dilshod o‘g‘li",
-      course: "Avtomatlashtirish",
-      date: "08.01.2026"
-    }
-  };
+  fetch(API_URL)
+    .then(res => res.json())
+    .then(data => {
+      if (!certId || !data[certId]) {
+        document.querySelector(".certificate").innerHTML = `
+          <h1>❌ Sertifikat topilmadi</h1>
+          <p>ID noto‘g‘ri yoki mavjud emas</p>
+        `;
+        return;
+      }
 
-  const cert = document.querySelector(".certificate");
+      const cert = data[certId];
 
-  if (!id) {
-    cert.innerHTML = `
-      <h2>ID topilmadi</h2>
-      <p>Iltimos, QR kod orqali kiring.</p>
-    `;
- } else if (validIDs[id]) {
-  cert.innerHTML = `
-    <h2 style="color:green;">✔ Haqiqiy sertifikat</h2>
+      document.querySelector("h1").innerText = cert.course;
+      document.querySelector(".name").innerText = cert.name;
+      document.querySelector(".certificate p").innerText =
+        "Muhandislik kursini muvaffaqiyatli yakunlagani uchun";
 
-    <p><b>Ism:</b> ${validIDs[id].name}</p>
-    <p><b>Kurs:</b> ${validIDs[id].course}</p>
-    <p><b>Sana:</b> ${validIDs[id].date}</p>
-    <p><b>ID:</b> ${id}</p>
-
-    <a href="sharifjon.pdf" class="btn" download>
-      📄 Sertifikatni yuklab olish
-    </a>
-  `;
-}
- else {
-    cert.innerHTML = `
-      <h2 style="color:red;">❌ Bunday sertifikat topilmadi</h2>
-      <p>ID: <b>${id}</b></p>
-    `;
-  }
+      const status = document.createElement("p");
+      status.innerHTML = "✅ <b>Haqiqiy sertifikat</b><br>Berilgan sana: " + cert.date;
+      status.style.marginTop = "15px";
+      document.querySelector(".certificate").appendChild(status);
+    });
 </script>
 
 
