@@ -9,9 +9,7 @@
   <title>AGMK Muhandislik maktabi</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -41,10 +39,7 @@
       z-index: 1000;
     }
 
-    .logo {
-      height: 90px;
-      width: auto;
-    }
+    .logo { height: 90px; }
 
     .header-text {
       font-size: 14px;
@@ -54,7 +49,7 @@
 
     /* ===== SERTIFIKAT (DESKTOP) ===== */
     .certificate {
-      background: #ffffff;
+      background: #fff;
       border-radius: 16px;
       padding: 30px 25px;
       text-align: center;
@@ -82,7 +77,7 @@
     }
 
     .btn {
-      display: inline-block;
+      display: none;
       margin-top: 20px;
       padding: 14px 22px;
       background: #00c6ff;
@@ -93,73 +88,36 @@
       font-size: 15px;
     }
 
-    .btn:hover {
-      background: #00a2d4;
-    }
+    .btn:hover { background: #00a2d4; }
 
-    /* ===== MOBIL (ANDROID) ===== */
+    /* ===== MOBIL ===== */
     @media (max-width: 768px) {
-
       body {
         padding-top: 140px;
         background-position: -230px 80px;
-        background-size: cover;
-        background-attachment: scroll;
       }
 
       header {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-
-        display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-
         padding: 5px 10px;
         background: rgba(15, 45, 58, 0.65);
-        z-index: 10;
       }
 
-      .logo {
-        height: 90px;
-      }
-
-      .header-text {
-        font-size: 13px;
-      }
-
-      /* 🔴 MOBILDA SERTIFIKAT FONI HIRA */
       .certificate {
-        background: rgba(255, 255, 255, 0.20);
+        background: rgba(255,255,255,0.2);
         backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
         border-radius: 20px;
-        padding: 32px 28px;
-        max-width: 620px;
         box-shadow: 0 20px 40px rgba(0,0,0,0.25);
       }
 
-      /* 🔴 FAQAT MOBILDA MATNLAR OQ */
       .certificate h1,
       .certificate .name,
       .certificate p {
-        color: #e8e003fd;
+        color: #ffe600;
         text-shadow: 0 2px 6px rgba(0,0,0,0.5);
-      }
-
-      .certificate h1 {
-        font-size: 22px;
-      }
-
-      .name {
-        font-size: 26px;
-      }
-
-      .btn {
-        width: 100%;
       }
     }
   </style>
@@ -167,71 +125,66 @@
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <img src="agmk-logo.png" alt="AGMK logo" class="logo">
-    <div class="header-text">
-      “OLMALIQ KON-METALLURGIYA KOMBINATI”<br>
-      AKSIYADORLIK JAMIYATI<br>
-      O‘QUV MARKAZI MUHANDISLIK MAKTABI
-    </div>
-  </header>
-
-  <!-- SERTIFIKAT -->
-  <div class="certificate">
-    <h1>AVTOMATLASHTIRISH</h1>
-
-    <div class="name">Saparaliyev Sharifjon Dilshod o'g'li</div>
-
-    <p>
-      muhandislik kursini muvaffaqiyatli yakunlagani uchun
-    </p>
-
-    <a href="sharifjon.pdf" class="btn" download>
-      📄 Sertifikatni yuklab olish
-    </a>
+<header>
+  <img src="agmk-logo.png" class="logo">
+  <div class="header-text">
+    “OLMALIQ KON-METALLURGIYA KOMBINATI”<br>
+    AKSIYADORLIK JAMIYATI<br>
+    O‘QUV MARKAZI MUHANDISLIK MAKTABI
   </div>
+</header>
 
-  <script>
-  const API_URL = "https://script.google.com/macros/s/AKfycbxkje_TUtAMTzQfgCDIrZ5sHPDVKYeF-bZvVqCbsl0RA8krL5teedcW_9v7_mHsB0Unbg/exec";
+<div class="certificate">
+  <h1>Yuklanmoqda...</h1>
+  <div class="name"></div>
+  <p></p>
 
-  const params = new URLSearchParams(window.location.search);
-  const certId = params.get("id");
+  <a id="pdfLink" class="btn" target="_blank">
+    📄 Sertifikatni yuklab olish
+  </a>
+</div>
 
-  fetch(API_URL)
-    .then(res => res.json())
-    .then(data => {
-      if (!certId || !data[certId]) {
-        document.querySelector(".certificate").innerHTML = `
-          <h1>❌ Sertifikat topilmadi</h1>
-          <p>ID noto‘g‘ri yoki mavjud emas</p>
-        `;
-        return;
-      }
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbxkje_TUtAMTzQfgCDIrZ5sHPDVKYeF-bZvVqCbsl0RA8krL5teedcW_9v7_mHsB0Unbg/exec";
 
-      const cert = data[certId];
+const params = new URLSearchParams(window.location.search);
+const certId = params.get("id");
 
-      document.querySelector("h1").innerText = cert.course;
-      document.querySelector(".name").innerText = cert.name;
-      document.querySelector(".certificate p").innerText =
-        "Muhandislik kursini muvaffaqiyatli yakunlagani uchun";
+fetch(API_URL)
+  .then(res => res.json())
+  .then(data => {
 
-      const status = document.createElement("p");
-     const rawDate = new Date(cert.date);
+    if (!certId || !data[certId]) {
+      document.querySelector(".certificate").innerHTML = `
+        <h1>❌ Sertifikat topilmadi</h1>
+        <p>ID noto‘g‘ri yoki mavjud emas</p>
+      `;
+      return;
+    }
 
-const formattedDate =
-  rawDate.getDate().toString().padStart(2, '0') + "." +
-  (rawDate.getMonth() + 1).toString().padStart(2, '0') + "." +
-  rawDate.getFullYear();
+    const cert = data[certId];
 
-status.innerHTML =
-  "✅ <b>Haqiqiy sertifikat</b><br>Berilgan sana: " + formattedDate;
+    document.querySelector("h1").innerText = cert.course;
+    document.querySelector(".name").innerText = cert.name;
+    document.querySelector(".certificate p").innerText =
+      "Muhandislik kursini muvaffaqiyatli yakunlagani uchun";
 
-      status.style.marginTop = "15px";
-      document.querySelector(".certificate").appendChild(status);
-    });
+    const d = new Date(cert.date);
+    const date =
+      String(d.getDate()).padStart(2,'0') + "." +
+      String(d.getMonth()+1).padStart(2,'0') + "." +
+      d.getFullYear();
+
+    const status = document.createElement("p");
+    status.innerHTML = "✅ <b>Haqiqiy sertifikat</b><br>Berilgan sana: " + date;
+    status.style.marginTop = "15px";
+    document.querySelector(".certificate").appendChild(status);
+
+    const pdfLink = document.getElementById("pdfLink");
+    pdfLink.href = `pdf/${certId}.pdf`;
+    pdfLink.style.display = "inline-block";
+  });
 </script>
-
 
 </body>
 </html>
