@@ -142,7 +142,7 @@ const API_URL = "https://script.google.com/macros/s/AKfycbxkje_TUtAMTzQfgCDIrZ5s
 const params = new URLSearchParams(window.location.search);
 const certId = params.get("id");
 
-fetch(API_URL)
+fetch(API_URL + "?t=" + Date.now()) // 🔥 keshni o‘ldiramiz
   .then(res => res.json())
   .then(data => {
 
@@ -165,12 +165,11 @@ fetch(API_URL)
     const statusText = document.createElement("p");
     statusText.style.marginTop = "15px";
 
-    // 🔥 STATUSNI TOZALAYMIZ
+    // 🔥 STATUSNI MAKSIMAL TOZALASH
     const cleanStatus = cert.status
+      .toString()
       .toLowerCase()
-      .replace(/\s+/g, "")
-      .replace(/'/g, "")
-      .replace(/‘/g, "");
+      .replace(/[\s’‘']/g, "");
 
     if (cleanStatus === "otdi") {
       const d = new Date(cert.date);
@@ -193,7 +192,6 @@ fetch(API_URL)
     document.querySelector(".certificate").appendChild(statusText);
   });
 </script>
-
 
 </body>
 </html>
