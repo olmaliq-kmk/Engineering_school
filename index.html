@@ -4,113 +4,225 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Olmaliq KMK AJ o‘quv markazi Muhandislik maktabi</title>
+  <title>Sertifikatni Tekshirish | Muhandislik Maktabi</title>
   <link rel="icon" type="image/png" href="favicon.png">
 
+  <!-- Google Fonts for Premium Look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+
   <style>
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Outfit', sans-serif; }
 
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
       min-height: 100vh;
       background:
-        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-        url("bg-school.jpg") center / cover no-repeat;
+        linear-gradient(rgba(10, 25, 47, 0.75), rgba(10, 25, 47, 0.9)),
+        url("bg-school.jpg") center / cover no-repeat fixed;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      padding-top: 120px;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: #1b2f3a;
       color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      padding: 10px 20px;
-      z-index: 1000;
     }
 
-    .logo { height: 90px; }
+    /* Premium Header */
+    header {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px 20px;
+      z-index: 1000;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo { height: 70px; filter: drop-shadow(0 0 8px rgba(255,255,255,0.2)); }
 
     .header-text {
       font-size: 14px;
-      line-height: 1.3;
-      font-weight: bold;
+      line-height: 1.4;
+      font-weight: 600;
+      color: #e2e8f0;
+      text-align: left;
+      letter-spacing: 0.5px;
     }
 
-    .certificate {
-      background: #fff;
-      border-radius: 16px;
-      padding: 30px 25px;
+    .header-text span {
+      color: #38bdf8;
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    /* Main Container */
+    .main-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 40px 20px;
+    }
+
+    /* Glassmorphism Card */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 40px;
       text-align: center;
       max-width: 600px;
       width: 100%;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: floatIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+      transform: translateY(30px);
     }
 
-    .certificate h1 {
-      font-size: 26px;
-      margin-bottom: 8px;
+    .glass-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
 
-    .certificate p {
-      font-size: 15px;
-      margin: 8px 0;
+    @keyframes floatIn {
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .name {
-      font-size: 30px;
-      font-weight: bold;
-      margin: 15px 0;
+    /* Search Area */
+    .search-area {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 30px;
     }
 
-    .btn {
-      display: none;
+    .search-input {
+      width: 100%;
+      padding: 16px 24px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(0, 0, 0, 0.2);
+      color: #fff;
+      font-size: 18px;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      background: rgba(0, 0, 0, 0.4);
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    }
+
+    .search-input::placeholder { color: rgba(255, 255, 255, 0.5); }
+
+    .btn-search {
+      padding: 16px;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(135deg, #0ea5e9, #2563eb);
+      color: #fff;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn-search:hover {
+      background: linear-gradient(135deg, #38bdf8, #3b82f6);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-search:active { transform: translateY(0); }
+
+    /* Result Area */
+    .result-area { display: none; margin-top: 20px; }
+
+    .cert-course {
+      font-size: 18px;
+      color: #cbd5e1;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .cert-name {
+      font-size: 36px;
+      font-weight: 800;
+      margin: 10px 0;
+      background: linear-gradient(to right, #fff, #93c5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .cert-status {
       margin-top: 20px;
-      padding: 14px 22px;
-      background: #00c6ff;
-      color: #000;
-      text-decoration: none;
-      border-radius: 10px;
-      font-weight: bold;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 16px;
+      line-height: 1.5;
     }
 
-    .btn:hover { background: #00a2d4; }
+    .status-success {
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #86efac;
+    }
+
+    .status-error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+    }
+
+    .btn-download {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 16px 32px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-download:hover {
+      background: #fff;
+      color: #0f172a;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    }
+
+    /* Loader */
+    .loader {
+      display: none;
+      width: 48px;
+      height: 48px;
+      border: 5px solid rgba(255,255,255,0.1);
+      border-bottom-color: #38bdf8;
+      border-radius: 50%;
+      margin: 20px auto;
+      animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation { 0% { transform: rotate(0deg) } 100% { transform: rotate(360deg) } }
 
     @media (max-width: 768px) {
-      body {
-        padding-top: 140px;
-        background-position: -230px 80px;
-      }
-
-      header {
-        position: absolute;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 5px 10px;
-        background: rgba(15,45,58,0.65);
-      }
-
-      .certificate {
-        background: rgba(255,255,255,0.2);
-        backdrop-filter: blur(4px);
-        border-radius: 20px;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-      }
-
-      .certificate h1,
-      .certificate .name,
-      .certificate p {
-        color: #ffe600;
-        text-shadow: 0 2px 6px rgba(0,0,0,0.5);
-      }
+      header { flex-direction: column; text-align: center; }
+      .glass-card { padding: 30px 20px; }
+      .cert-name { font-size: 28px; }
     }
   </style>
 </head>
@@ -118,79 +230,137 @@
 <body>
 
 <header>
-  <img src="agmk-logo.png" class="logo">
+  <img src="agmk-logo.png" class="logo" alt="AGMK Logo">
   <div class="header-text">
-    “OLMALIQ KON-METALLURGIYA KOMBINATI”<br>
-    AKSIYADORLIK JAMIYATI<br>
-    O‘QUV MARKAZI MUHANDISLIK MAKTABI
+    "OLMALIQ KON-METALLURGIYA KOMBINATI" AJ<br>
+    <span>O'QUV MARKAZI MUHANDISLIK MAKTABI</span>
   </div>
 </header>
 
-<div class="certificate">
-  <h1>Yuklanmoqda...</h1>
-  <div class="name"></div>
-  <p></p>
+<div class="main-container">
+  <div class="glass-card">
+    
+    <!-- Qidiruv Qismi -->
+    <div class="search-area" id="searchArea">
+      <h2 style="margin-bottom: 10px; font-weight: 600;">Sertifikatni Tekshirish</h2>
+      <p style="color: rgba(255,255,255,0.6); margin-bottom: 20px; font-size: 14px;">
+        Sertifikat haqiqiyligini tekshirish uchun ID raqamini kiriting.
+      </p>
+      <input type="text" id="certIdInput" class="search-input" placeholder="Sertifikat ID (Masalan: AV0069)">
+      <button class="btn-search" onclick="checkCertificate()">Tekshirish</button>
+    </div>
 
-  <a id="pdfLink" class="btn" target="_blank">
-    📄 Sertifikatni yuklab olish
-  </a>
+    <!-- Yuklanish Animatsiyasi -->
+    <div class="loader" id="loader"></div>
+
+    <!-- Natija Qismi -->
+    <div class="result-area" id="resultArea">
+      <div class="cert-course" id="resCourse"></div>
+      <div class="cert-name" id="resName"></div>
+      <div id="resStatus"></div>
+      
+      <a id="resPdfLink" class="btn-download" target="_blank" style="display: none;">
+        📄 PDF shaklini yuklab olish
+      </a>
+
+      <button class="btn-search" style="margin-top: 20px; padding: 12px 24px; font-size: 14px; background: transparent; border: 1px solid rgba(255,255,255,0.2);" onclick="resetSearch()">
+        Boshqa ID tekshirish
+      </button>
+    </div>
+
+  </div>
 </div>
 
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycbxkje_TUtAMTzQfgCDIrZ5sHPDVKYeF-bZvVqCbsl0RA8krL5teedcW_9v7_mHsB0Unbg/exec";
 
+const searchArea = document.getElementById("searchArea");
+const resultArea = document.getElementById("resultArea");
+const loader = document.getElementById("loader");
+const certIdInput = document.getElementById("certIdInput");
+
+// URL dagi ?id= ni o'qish
 const params = new URLSearchParams(window.location.search);
-const certId = params.get("id");
+const urlId = params.get("id");
 
-fetch(API_URL + "?t=" + Date.now()) // 🔥 keshni o‘ldiramiz
-  .then(res => res.json())
-  .then(data => {
+if (urlId) {
+    certIdInput.value = urlId;
+    checkCertificate();
+}
 
-    if (!certId || !data[certId]) {
-      document.querySelector(".certificate").innerHTML = `
-        <h1>❌ Sertifikat topilmadi</h1>
-        <p>ID noto‘g‘ri yoki mavjud emas</p>
-      `;
-      return;
+function resetSearch() {
+    resultArea.style.display = "none";
+    searchArea.style.display = "flex";
+    certIdInput.value = "";
+    window.history.pushState({}, document.title, window.location.pathname);
+}
+
+function checkCertificate() {
+    const certId = certIdInput.value.trim();
+    if (!certId) {
+        alert("Iltimos, ID raqamini kiriting!");
+        return;
     }
 
-    const cert = data[certId];
+    searchArea.style.display = "none";
+    resultArea.style.display = "none";
+    loader.style.display = "block";
 
-    document.querySelector("h1").innerText = cert.course;
-    document.querySelector(".name").innerText = cert.name;
-    document.querySelector(".certificate p").innerText =
-      "Muhandislik maktabi kursini yakunlagan";
+    fetch(API_URL + "?t=" + Date.now())
+    .then(res => res.json())
+    .then(data => {
+        loader.style.display = "none";
+        resultArea.style.display = "block";
 
-    const pdfLink = document.getElementById("pdfLink");
-    const statusText = document.createElement("p");
-    statusText.style.marginTop = "15px";
+        if (!data[certId]) {
+            document.getElementById("resCourse").innerText = "Xatolik";
+            document.getElementById("resName").innerText = "Sertifikat topilmadi";
+            document.getElementById("resStatus").className = "cert-status status-error";
+            document.getElementById("resStatus").innerHTML = "❌ Kiritilgan ID (" + certId + ") bo'yicha ma'lumot mavjud emas.";
+            document.getElementById("resPdfLink").style.display = "none";
+            return;
+        }
 
- 
-    const cleanStatus = cert.status
-      .toString()
-      .toLowerCase()
-      .replace(/[\s’‘']/g, "");
+        const cert = data[certId];
+        document.getElementById("resCourse").innerText = cert.course || "Muhandislik maktabi";
+        document.getElementById("resName").innerText = cert.name;
+        
+        const cleanStatus = cert.status ? cert.status.toString().toLowerCase().replace(/[\s’‘']/g, "") : "";
+        const resStatusDiv = document.getElementById("resStatus");
+        const resPdfLink = document.getElementById("resPdfLink");
 
-    if (cleanStatus === "otdi") {
-      const d = new Date(cert.date);
-      const date =
-        String(d.getDate()).padStart(2,'0') + "." +
-        String(d.getMonth()+1).padStart(2,'0') + "." +
-        d.getFullYear();
+        if (cleanStatus === "otdi") {
+            const d = new Date(cert.date || new Date());
+            const dateStr = String(d.getDate()).padStart(2,'0') + "." + String(d.getMonth()+1).padStart(2,'0') + "." + d.getFullYear();
 
-      pdfLink.href = `pdf/${certId}.pdf`;
-      pdfLink.style.display = "inline-block";
+            resStatusDiv.className = "cert-status status-success";
+            resStatusDiv.innerHTML = "✅ <b>Ushbu sertifikat haqiqiy hisoblanadi</b><br><br>Berilgan sana: " + dateStr;
+            
+            resPdfLink.href = `pdf/${certId}.pdf`;
+            resPdfLink.style.display = "inline-block";
+        } else {
+            resStatusDiv.className = "cert-status status-error";
+            resStatusDiv.innerHTML = "❌ <b>Sertifikat tasdiqlanmagan</b><br><br>Imtihondan o'tilmagan yoki o'quv jarayoni yakunlanmagan.";
+            resPdfLink.style.display = "none";
+        }
+    })
+    .catch(err => {
+        loader.style.display = "none";
+        resultArea.style.display = "block";
+        document.getElementById("resCourse").innerText = "";
+        document.getElementById("resName").innerText = "Aloqa xatosi";
+        document.getElementById("resStatus").className = "cert-status status-error";
+        document.getElementById("resStatus").innerHTML = "Server bilan bog'lanishda xatolik yuz berdi. Internetni tekshiring.";
+    });
+}
 
-      statusText.innerHTML =
-        "✅ <b>Haqiqiy sertifikat</b><br>Berilgan sana: " + date;
-    } else {
-      pdfLink.style.display = "none";
-      statusText.innerHTML =
-        "❌ <b>Sertifikat berilmagan</b><br>Imtihondan o‘tilmagan";
-    }
-
-    document.querySelector(".certificate").appendChild(statusText);
-  });
+// Enter bosilganda ham ishlasin
+certIdInput.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    checkCertificate();
+  }
+});
 </script>
 
 </body>
