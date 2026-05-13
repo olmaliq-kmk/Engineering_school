@@ -44,11 +44,12 @@
     .logo { height: 70px; filter: drop-shadow(0 0 8px rgba(255,255,255,0.2)); }
 
     .header-text {
+      width: 100%;
       font-size: 14px;
       line-height: 1.4;
       font-weight: 600;
       color: #e2e8f0;
-      text-align: left;
+      text-align: center;
       letter-spacing: 0.5px;
     }
 
@@ -220,7 +221,13 @@
     @keyframes rotation { 0% { transform: rotate(0deg) } 100% { transform: rotate(360deg) } }
 
     @media (max-width: 768px) {
-      header { flex-direction: column; text-align: center; }
+      header { flex-direction: column; 
+               justify-content: center; 
+               align-items: center; 
+               text-align: center; 
+               padding: 20px 15px;
+               gap: 10px;
+              }
       .glass-card { padding: 30px 20px; }
       .cert-name { font-size: 28px; }
     }
