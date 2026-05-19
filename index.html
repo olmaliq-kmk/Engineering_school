@@ -326,21 +326,25 @@ function checkCertificate() {
         }
 
         const cert = data[certId];
-        document.getElementById("resCourse").innerText = cert.course || "Muhandislik maktabi";
-        document.getElementById("resName").innerText = cert.name;
+        document.getElementById("resCourse").innerText = cert.course_uz || cert.course_en || "Muhandislik maktabi";
+
+document.getElementById("resName").innerText =
+    cert.name_uz ||
+    cert.name_en ||
+    "Ma'lumot topilmadi";
         
         const cleanStatus = cert.status ? cert.status.toString().toLowerCase().replace(/[\s’‘']/g, "") : "";
         const resStatusDiv = document.getElementById("resStatus");
         const resPdfLink = document.getElementById("resPdfLink");
 
         if (cleanStatus === "otdi") {
-            const d = new Date(cert.date || new Date());
-            const dateStr = String(d.getDate()).padStart(2,'0') + "." + String(d.getMonth()+1).padStart(2,'0') + "." + d.getFullYear();
+const d = new Date(cert.issue_date || new Date());            const dateStr = String(d.getDate()).padStart(2,'0') + "." + String(d.getMonth()+1).padStart(2,'0') + "." + d.getFullYear();
 
             resStatusDiv.className = "cert-status status-success";
             resStatusDiv.innerHTML = "✅ <b>Ushbu sertifikat haqiqiy hisoblanadi</b><br><br>Berilgan sana: " + dateStr;
             
-            resPdfLink.href = `pdf/${certId}.pdf`;
+            resPdfLink.href = `pdf/${certId}.pdf?t=${Date.now()}`;
+resPdfLink.setAttribute("download", `${certId}.pdf`);
             resPdfLink.style.display = "inline-block";
         } else {
             resStatusDiv.className = "cert-status status-error";
